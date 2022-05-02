@@ -4,26 +4,28 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 
 public class Main extends JFrame {
 	private static final long serialVersionUID = 8915376176527799444L;
@@ -49,6 +51,8 @@ public class Main extends JFrame {
 	public static JTextField attack_up;
 	public static JCheckBox ifHuang;
 	private static JLabel Yuhun_sup_label;
+	private static JRadioButtonMenuItem normal_mode;
+	private static JRadioButtonMenuItem minus_mode;
 	/**
 	 * Launch the application.
 	 */
@@ -76,6 +80,8 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 773, 342);
 		
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -91,49 +97,6 @@ public class Main extends JFrame {
 		});
 		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_MASK));
 		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		JMenu mnNewMenu_3 = new JMenu("Buff\u6E05\u7A7A");
-		mnNewMenu.add(mnNewMenu_3);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("\u589E\u4F24\u533A");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetbuff(1);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\u8106\u5F31\u533A");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetbuff(2);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\u51CF\u9632\u533A");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetbuff(3);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("\u52A0\u653B\u533A");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetbuff(4);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_4);
-		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("\u5168\u90E8\u6E05\u96F6");
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetbuff(0);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_5);
 		
 		JMenuItem mntmNewMenuItem_12 = new JMenuItem("\u68C0\u67E5\u66F4\u65B0");
 		mntmNewMenuItem_12.setEnabled(false);
@@ -201,6 +164,63 @@ public class Main extends JFrame {
 		});
 		mntmNewMenuItem_11.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
 		mnNewMenu_2.add(mntmNewMenuItem_11);
+		
+		JMenu mnNewMenu_4 = new JMenu("\u8BBE\u7F6E(S)");
+		mnNewMenu_4.setMnemonic('S');
+		menuBar.add(mnNewMenu_4);
+		
+		JMenu mnNewMenu_3_1 = new JMenu("Buff\u6E05\u7A7A");
+		mnNewMenu_4.add(mnNewMenu_3_1);
+		
+		JMenuItem mntmNewMenuItem_14 = new JMenuItem("\u589E\u4F24\u533A");
+		mntmNewMenuItem_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetbuff(1);
+			} 
+		});
+		mnNewMenu_3_1.add(mntmNewMenuItem_14);
+		
+		JMenuItem mntmNewMenuItem_2_1 = new JMenuItem("\u8106\u5F31\u533A");
+		mntmNewMenuItem_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetbuff(2);
+			}
+		});
+		mnNewMenu_3_1.add(mntmNewMenuItem_2_1);
+		
+		JMenuItem mntmNewMenuItem_3_1 = new JMenuItem("\u51CF\u9632\u533A");
+		mntmNewMenuItem_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetbuff(3);
+			}
+		});
+		mnNewMenu_3_1.add(mntmNewMenuItem_3_1);
+		
+		JMenuItem mntmNewMenuItem_4_1 = new JMenuItem("\u52A0\u653B\u533A");
+		mntmNewMenuItem_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetbuff(4);
+			}
+		});
+		mnNewMenu_3_1.add(mntmNewMenuItem_4_1);
+		
+		JMenuItem mntmNewMenuItem_5_1 = new JMenuItem("\u5168\u90E8\u6E05\u96F6");
+		mntmNewMenuItem_5_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetbuff(0);
+			}
+		});
+		mnNewMenu_3_1.add(mntmNewMenuItem_5_1);
+		
+		JMenu mnNewMenu_3 = new JMenu("\u6A21\u5F0F\u5207\u6362");
+		mnNewMenu_4.add(mnNewMenu_3);
+		
+		normal_mode = new JRadioButtonMenuItem("\u5E38\u89C4\u6A21\u5F0F");
+		normal_mode.setSelected(true);
+		mnNewMenu_3.add(normal_mode);
+		
+		minus_mode = new JRadioButtonMenuItem("\u8D1F\u6570\u517C\u5BB9\u6A21\u5F0F");
+		mnNewMenu_3.add(minus_mode);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -574,6 +594,10 @@ public class Main extends JFrame {
 		
 		Yuhun_sup_label.setVisible(false);
 		Yuhun_sup.setVisible(false);
+		
+		ButtonGroup btg = new ButtonGroup();
+		btg.add(normal_mode);
+		btg.add(minus_mode);
 	}
 	public static void add_reset_text(int type)throws RuntimeException{
 		final String str = "添加成功";
@@ -591,7 +615,8 @@ public class Main extends JFrame {
 			attack_up.setText(str);
 			break;
 		default:
-			throw new RuntimeException("From function \"add_reset_text\" : Type input is illegal!");
+			RuntimeException e = new RuntimeException("From function \"add_reset_text\" : Type input is illegal!");
+			throwerror(e);
 		}
 	}
 	public static void del_reset_text(int type)throws Exception {
@@ -609,7 +634,8 @@ public class Main extends JFrame {
 		case 4:
 			attack_up.setText(str);
 		default:
-			throw new RuntimeException("From function \"del_reset_text\" : Type input is illegal!");
+			RuntimeException e = new RuntimeException("From function \"del_reset_text\" : Type input is illegal!");
+			throwerror(e);
 		}
 	}
 	private static void Income() {
@@ -619,7 +645,7 @@ public class Main extends JFrame {
 					Income frame = new Income();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					throwerror(e);
 				}
 			}
 		});
@@ -652,28 +678,40 @@ public class Main extends JFrame {
 		}else if(Funcs.is_str_empty(radit.getText())){
 			JOptionPane.showMessageDialog(null, "有输入框为空","错误",JOptionPane.ERROR_MESSAGE);
 		}else {
-			double temp;
-			temp = Double.valueOf(attack.getText());
-			if(temp <= 0) {
-				JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
-				return;
+			
+			if(normal_mode.isSelected() && !minus_mode.isSelected()) {
+				double temp;
+				temp = Double.valueOf(attack.getText());
+				if(temp <= 0) {
+					JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				temp = Double.valueOf(baoji.getText());
+				if(temp <=0) {
+					JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				temp = Double.valueOf(baoshang.getText());
+				if(temp <= 0) {
+					JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				temp = Double.valueOf(defense.getText());
+				if(temp <= 0) {
+					JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				Funcs.work(false);
+			}else if(!normal_mode.isSelected() && minus_mode.isSelected()) {
+				Funcs.work(true);
+			}else {
+				try {
+					throw new RuntimeException("From function start: Illegal selection in buttongroup : normal_mode & minus_mode");
+				} catch (Exception e) {
+					throwerror(e);
+				}
 			}
-			temp = Double.valueOf(baoji.getText());
-			if(temp <=0) {
-				JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			temp = Double.valueOf(baoshang.getText());
-			if(temp <= 0) {
-				JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			temp = Double.valueOf(defense.getText());
-			if(temp <= 0) {
-				JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			Funcs.work();
+			
 			try {
 				Output dialog = new Output();
 				dialog.setModal(true);
@@ -725,8 +763,13 @@ public class Main extends JFrame {
 			Funcs.attack_up_stack = temp.new QStack<>(120);
 			break;
 		default:
-			throw new RuntimeException("From function resetbuff:Illegal id input");
+			Exception e = new Exception("From function resetbuff:Illegal id input");
+			throwerror(e);
 		}
 		return;
+	}
+	public static void throwerror(Exception e) {
+		ErrorSender dialog = new ErrorSender(e);
+		dialog.setVisible(true);
 	}
 }

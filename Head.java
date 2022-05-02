@@ -22,7 +22,7 @@ public class Head {
 	public static double Player_Baoji;
 	public static double Player_Baoshang;
 	public static double Target_Defense;
-	public static final String version="1.2.0";
+	public static final String version="1.3.0";
 	public static final String text_about = "本程序由WeedyEver开发\n"
 			+ "基于Java8编写\n"
 			+ "部分图标归原作者Foggycloud07所有\n"
@@ -53,7 +53,20 @@ public class Head {
 			+ "\n"
 			+ "\n"
 			+ "V1.2.0版本更新日志\n"
-			+ "加入了对于负数的确认，日后可能会加入负数模式\n";
+			+ "加入了对于负数的确认，日后可能会加入负数模式\n"
+			+ "\n"
+			+ "\n"
+			+ "V1.3.0版本更新日志\n"
+			+ "加入了负数模式\n"
+			+ "加入了新的错误处理机制";
 	public static final String url = "https://afdian.net/@weedy";
-	
+	public static final String errortips = "程序运行时发生错误!\n"
+			+ "若想联系开发者修复此问题,点击反馈按钮\n"
+			+ "若想继续使用软件,点击关闭按钮\n"
+			+ "请注意,发生错误后,软件的运行可能会不稳定,不建议继续使用";
+	public static final String errordeal = "作者联系方式:WeedyEver@163.com\n"
+			+ "请将此窗口截屏,附上简单的文字描述,说明在错误发生前您进行了什么操作\n"
+			+ "如果可以,请找到error.log文件(一般和程序同一目录下),将其一并发送\n"
+			+ "感谢您的配合,所有反馈的bug都会在日后更新中修复!\n"
+			+ "为了保证您的使用体验,建议关闭程序";
 }

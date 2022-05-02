@@ -14,6 +14,7 @@ public class Funcs {
 	}
 	private static boolean isWangqie = false;
 	private static boolean isHuang = false;
+	private static boolean isMinus = false;
 	private static int Bingzhubu_level = 0;
 	public class QStack<T>{
 		public static final int INPUT_FROM_HEAD = 1;
@@ -217,7 +218,8 @@ public class Funcs {
 			}else if (amount > 0 && amount <= 25) {
 				result = 0.50;
 			}else {
-				throw new IllegalArgumentException("From function \"Yuhun_section\" : Illegal amount on Main.Yuhun_sup");
+				IllegalArgumentException e = new IllegalArgumentException("From function \"Yuhun_section\" : Illegal amount on Main.Yuhun_sup");
+				Main.throwerror(e);
 			}
 			break;
 		case 5:
@@ -248,7 +250,8 @@ public class Funcs {
 			result = (double)amount * 0.2;
 			break;
 		default:
-			throw new IllegalAccessException("From function \"Yuhun_section\" : Type input is illegal!");
+			IllegalAccessException e = new IllegalAccessException("From function \"Yuhun_section\" : Type input is illegal!");
+			Main.throwerror(e);
 		}
 		if(isHuang) result += 0.10;
 		return result;
@@ -268,7 +271,12 @@ public class Funcs {
 				temp.push(t);
 			}
 		}else {
-			throw new NumberFormatException("From function ArrToStack:Illegal flag number input!");
+			try {
+				throw new NumberFormatException("From function ArrToStack:Illegal flag number input!");
+			} catch (Exception e) {
+				Main.throwerror(e);
+			}
+			
 		}
 		return temp;
 	}
@@ -363,12 +371,16 @@ public class Funcs {
 	}
 	private static double damage_false()throws Exception {
 		attack_section();
-		return Head.Player_Attack * more_attack_section() * more_damage_section() * defense_section() * radio_section();
+		double res = Head.Player_Attack * more_attack_section() * more_damage_section() * defense_section() * radio_section();
+		if(isMinus && res < 0) return -res;
+		else return res;
 	}
 	private static double damage_true()throws Exception{
 		double t1 = damage_false();
 		double t2 = baoji_section();
-		return t1*t2;
+		double res = t1*t2;
+		if(isMinus && res < 0) return -res;
+		else return res;
 	}
 	private static double damage_best(){
 		double ans = 0.0;
@@ -380,7 +392,8 @@ public class Funcs {
 		}
 		return ans;
 	}
-	public static void work() {
+	public static void work(boolean ifminus) {
+		isMinus = ifminus;
 		origin_set();
 		String output = output_str();
 		Head.output_text = output;
@@ -421,7 +434,7 @@ public class Funcs {
 				str += '\n';
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Main.throwerror(e);
 		}
 		return str;
 	}
