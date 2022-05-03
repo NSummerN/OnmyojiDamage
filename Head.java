@@ -22,7 +22,7 @@ public class Head {
 	public static double Player_Baoji;
 	public static double Player_Baoshang;
 	public static double Target_Defense;
-	public static final String version="1.3.0";
+	public static final String version="1.4.0";
 	public static final String text_about = "本程序由WeedyEver开发\n"
 			+ "基于Java8编写\n"
 			+ "部分图标归原作者Foggycloud07所有\n"
@@ -37,7 +37,35 @@ public class Head {
 			null,"请填入式神攻击!","请填入式神暴击!(默认为10)","请填入式神暴击伤害!(默认为150)","请填入倍率!(默认为100)",
 			"请填入目标防御!(默认为500)","请输入buff值!(默认为0)"
 	};
-	public static int ErrorID = -1;
+	public static final int ERROR = -4396;
+	public static final String ERRORMSG = "ERROR";
+	public static boolean isError = false;
+	public static class ZeroException extends Exception{
+		private static String msg;
+		public ZeroException() {
+			msg = "Input is zero!";
+		}
+		public ZeroException(String s) {
+			msg = s;
+		}
+		public static void print() {
+			System.err.println(msg);
+		}
+		private static final long serialVersionUID = 5770759398368757423L;
+	}
+	public static class MinusException extends Exception{
+		private static final long serialVersionUID = -7544805225996232018L;
+		private static String msg;
+		public MinusException() {
+			msg = "Input is minus!";
+		}
+		public MinusException(String s) {
+			msg = s;
+		}
+		public static void print() {
+			System.err.println(msg);
+		}
+	}
 	public static final String tiptext = "依次填入各项数据，不要遗漏\r\n"
 			+ "点击开始计算即可工作\r\n"
 			+ "程序可能会有些许误差，一般在±5%以内，影响不大";
@@ -58,7 +86,12 @@ public class Head {
 			+ "\n"
 			+ "V1.3.0版本更新日志\n"
 			+ "加入了负数模式\n"
-			+ "加入了新的错误处理机制";
+			+ "加入了新的错误处理机制\n"
+			+ "\n"
+			+ "\n"
+			+ "V1.4.0版本更新日志\n"
+			+ "修复了一个严重bug,该bug曾导致,当选择某些特定御魂类型的时候,程序不能工作\n"
+			+ "加入了选择特定御魂类型时,对输入框合法性的判定\n";
 	public static final String url = "https://afdian.net/@weedy";
 	public static final String errortips = "程序运行时发生错误!\n"
 			+ "若想联系开发者修复此问题,点击反馈按钮\n"
@@ -69,4 +102,5 @@ public class Head {
 			+ "如果可以,请找到error.log文件(一般和程序同一目录下),将其一并发送\n"
 			+ "感谢您的配合,所有反馈的bug都会在日后更新中修复!\n"
 			+ "为了保证您的使用体验,建议关闭程序";
+	
 }

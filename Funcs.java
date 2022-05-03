@@ -197,29 +197,63 @@ public class Funcs {
 			result = 0.4;
 			break;
 		case 2://狂骨
-			temp = Double.valueOf(Main.Yuhun_sup.getText());
-			result = Math.round(temp) * 0.08;
+			try {
+				temp = Double.valueOf(Main.Yuhun_sup.getText());
+				if(temp <= 0) {
+					throw new NumberFormatException("Illegal input in Main.Yuhun_sup");
+				}
+				int it = (int) temp;
+				if(temp - it != 0) {
+					throw new IllegalArgumentException("Input cannot be a decimal!");
+				}
+				if(temp > 8) {
+					throw new ArithmeticException("Input is bigger than 8");
+				}
+			}catch(NumberFormatException e1) {
+				JOptionPane.showMessageDialog(null, "鬼火数必须为正","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}catch (IllegalArgumentException e2) {
+				JOptionPane.showMessageDialog(null, "鬼火数不能是小数","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}catch (ArithmeticException e3){
+				JOptionPane.showMessageDialog(null, "请输入合法的鬼火数","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}catch(Exception e4) {
+				JOptionPane.showMessageDialog(null, "请输入合法的鬼火数","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}finally {
+				result = Math.round(temp) * 0.08;
+			}
 			break;
 		case 3://鸣屋
 			result = 0.45;
 			break;
 		case 4://心眼
-			int amount = Integer.valueOf(Main.Yuhun_sup.getText());
-			if(amount > 85 && amount <= 100) {
-				result = 0.0;
-			}else if(amount > 70 && amount <= 85) {
-				result = 0.10;
-			}else if(amount > 55 && amount <= 70) {
-				result = 0.20;
-			}else if (amount > 40 && amount <= 55) {
-				result = 0.30;
-			}else if(amount > 25 && amount <= 40) {
-				result = 0.40;
-			}else if (amount > 0 && amount <= 25) {
-				result = 0.50;
-			}else {
-				IllegalArgumentException e = new IllegalArgumentException("From function \"Yuhun_section\" : Illegal amount on Main.Yuhun_sup");
-				Main.throwerror(e);
+			try {
+				int amount = Integer.valueOf(Main.Yuhun_sup.getText());
+				if(amount > 85 && amount <= 100) {
+					result = 0.0;
+				}else if(amount > 70 && amount <= 85) {
+					result = 0.10;
+				}else if(amount > 55 && amount <= 70) {
+					result = 0.20;
+				}else if (amount > 40 && amount <= 55) {
+					result = 0.30;
+				}else if(amount > 25 && amount <= 40) {
+					result = 0.40;
+				}else if (amount > 0 && amount <= 25) {
+					result = 0.50;
+				}else if(amount == 0){
+					throw new Head.ZeroException();
+				}else {
+					throw new IllegalArgumentException("From function \"Yuhun_section\" : Illegal amount on Main.Yuhun_sup");
+				}
+			}catch (Head.ZeroException e1) {
+				JOptionPane.showMessageDialog(null, "输入量不能为零","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			}catch(IllegalArgumentException e2) {
+				JOptionPane.showMessageDialog(null, "输入量不合法","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
 			}
 			break;
 		case 5:
@@ -235,19 +269,62 @@ public class Funcs {
 		case 9:
 			result = 0.3;break;
 		case 10:
-			int level = Integer.valueOf(Main.Yuhun_sup.getText());
-			Bingzhubu_level = level;
-			result = 0.0;
+			try {
+				int level = Integer.valueOf(Main.Yuhun_sup.getText());
+				if(level == 0) {
+					throw new Head.ZeroException();
+				}
+				Bingzhubu_level = level;
+				result = 0.0;
+			}catch(Head.ZeroException e1) {
+				JOptionPane.showMessageDialog(null, "输入量不能为零","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			}catch(Exception e2) {
+				JOptionPane.showMessageDialog(null, "输入量不合法","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}
 			break;
 		case 11:
-			amount = Integer.valueOf(Main.Yuhun_sup.getText());
-			Head.Player_Baoshang += (double)amount * 0.5;
-			result = 0.0;
+			try {
+				int amount = Integer.valueOf(Main.Yuhun_sup.getText());
+				if(amount < 0) {
+					throw new Head.MinusException();
+				}else if(amount == 0) {
+					throw new Head.ZeroException();
+				}
+				Head.Player_Baoshang += (double)amount * 0.5;
+				result = 0.0;
+			}catch (Head.MinusException e) {
+				JOptionPane.showMessageDialog(null, "输入量不能为负数","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			}catch(Head.ZeroException e){
+				JOptionPane.showMessageDialog(null, "输入量不能为零","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "输入量不合法","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}
 			break;
 		case 12:
-			amount = Integer.valueOf(Main.Yuhun_sup.getText());
-			amount = amount > 6 ? 6 : 0;
-			result = (double)amount * 0.2;
+			try {
+				int amount = Integer.valueOf(Main.Yuhun_sup.getText());
+				if(amount < 0) {
+					throw new Head.MinusException();
+				}else if(amount == 0) {
+					throw new Head.ZeroException();
+				}
+				amount = amount > 6 ? 6 : 0;
+				result = (double)amount * 0.2;
+			} catch (Head.MinusException e) {
+				JOptionPane.showMessageDialog(null, "输入量不能为负数","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			}catch(Head.ZeroException e){
+				JOptionPane.showMessageDialog(null, "输入量不能为零","提示",JOptionPane.INFORMATION_MESSAGE);
+				return Head.ERROR;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "输入量不合法","错误",JOptionPane.ERROR_MESSAGE);
+				return Head.ERROR;
+			}
 			break;
 		default:
 			IllegalAccessException e = new IllegalAccessException("From function \"Yuhun_section\" : Type input is illegal!");
@@ -285,6 +362,9 @@ public class Funcs {
 		double arr[] = new double[more_att_stack.size()];
 		int i = 0;
 		ys = Yuhun_section();
+		if(ys == Head.ERROR) {
+			return Head.ERROR;
+		}
 		if(!more_att_stack.isEmpty()) {
 			while(!more_att_stack.isEmpty()) {
 				double top = more_att_stack.peek().amount;
@@ -371,12 +451,18 @@ public class Funcs {
 	}
 	private static double damage_false()throws Exception {
 		attack_section();
+		if(more_attack_section() == Head.ERROR) {
+			return Head.ERROR;
+		}
 		double res = Head.Player_Attack * more_attack_section() * more_damage_section() * defense_section() * radio_section();
 		if(isMinus && res < 0) return -res;
 		else return res;
 	}
 	private static double damage_true()throws Exception{
 		double t1 = damage_false();
+		if(t1 == Head.ERROR) {
+			return Head.ERROR;
+		}
 		double t2 = baoji_section();
 		double res = t1*t2;
 		if(isMinus && res < 0) return -res;
@@ -396,12 +482,21 @@ public class Funcs {
 		isMinus = ifminus;
 		origin_set();
 		String output = output_str();
-		Head.output_text = output;
+		if(output == Head.ERRORMSG) {
+			Head.isError = true;
+			return;
+		}else {
+			Head.output_text = output;
+		}
 	}
 	private static String output_str() {
+		
 		long up,down;
 		String str = "";
 		try {
+			if(damage_true() == Head.ERROR) {
+				return Head.ERRORMSG;
+			}
 			if(Head.Player_Baoji >= 100) {
 				up = Math.round(damage_true() * 1.01);
 				down = Math.round(damage_true() * 0.99);

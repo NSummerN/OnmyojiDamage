@@ -53,9 +53,6 @@ public class Main extends JFrame {
 	private static JLabel Yuhun_sup_label;
 	private static JRadioButtonMenuItem normal_mode;
 	private static JRadioButtonMenuItem minus_mode;
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		origin();
 		EventQueue.invokeLater(new Runnable() {
@@ -69,26 +66,17 @@ public class Main extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	@SuppressWarnings("deprecation")
 	public Main() {
-		setTitle("\u9634\u9633\u5E08\u4F24\u5BB3\u8BA1\u7B97\u5668");
+		setTitle("阴阳师伤害计算器"+"V"+Head.version);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 773, 342);
-		
-		
-		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
 		JMenu mnNewMenu = new JMenu("\u6587\u4EF6(F)");
 		mnNewMenu.setMnemonic('F');
 		menuBar.add(mnNewMenu);
-		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\u5F00\u59CB\u8BA1\u7B97");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -673,12 +661,55 @@ public class Main extends JFrame {
 		}else if(Funcs.is_str_empty(defense.getText())) {
 			JOptionPane.showMessageDialog(null, "有输入框为空","错误",JOptionPane.ERROR_MESSAGE);
 		}else if(index == 2 || index == 4 || index == 10 || index == 11 || index == 12){
-			if(Funcs.is_str_empty(Yuhun_sup.getText()))
+			if(Funcs.is_str_empty(Yuhun_sup.getText())) {
 				JOptionPane.showMessageDialog(null, "有输入框为空","错误",JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(normal_mode.isSelected() && !minus_mode.isSelected()) {
+					double temp;
+					temp = Double.valueOf(attack.getText());
+					if(temp <= 0) {
+						JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					temp = Double.valueOf(baoji.getText());
+					if(temp <=0) {
+						JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					temp = Double.valueOf(baoshang.getText());
+					if(temp <= 0) {
+						JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					temp = Double.valueOf(defense.getText());
+					if(temp <= 0) {
+						JOptionPane.showMessageDialog(null, "输入框中请输入正数","错误",JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					Funcs.work(false);
+				}else if(!normal_mode.isSelected() && minus_mode.isSelected()) {
+					Funcs.work(true);
+				}else {
+					try {
+						throw new RuntimeException("From function start: Illegal selection in buttongroup : normal_mode & minus_mode");
+					} catch (Exception e) {
+						throwerror(e);
+					}
+				}
+				try {
+					if(Head.isError) {
+						return;
+					}
+					Output dialog = new Output();
+					dialog.setModal(true);
+					dialog.setVisible(true);
+				}catch (Exception e1){
+					e1.printStackTrace();
+				}
+			}
 		}else if(Funcs.is_str_empty(radit.getText())){
 			JOptionPane.showMessageDialog(null, "有输入框为空","错误",JOptionPane.ERROR_MESSAGE);
 		}else {
-			
 			if(normal_mode.isSelected() && !minus_mode.isSelected()) {
 				double temp;
 				temp = Double.valueOf(attack.getText());
@@ -711,8 +742,10 @@ public class Main extends JFrame {
 					throwerror(e);
 				}
 			}
-			
 			try {
+				if(Head.isError) {
+					return;
+				}
 				Output dialog = new Output();
 				dialog.setModal(true);
 				dialog.setVisible(true);
