@@ -2,13 +2,16 @@ package damage;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -68,97 +71,107 @@ public class Main extends JFrame {
 	}
 	@SuppressWarnings("deprecation")
 	public Main() {
-		setTitle("“ı—Ù ¶…À∫¶º∆À„∆˜"+"V"+Head.version);
+		setIcon();
+		setTitle("“ı—Ù ¶…À∫¶º∆À„∆˜ "+Head.version);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 773, 342);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		JMenu mnNewMenu = new JMenu("\u6587\u4EF6(F)");
-		mnNewMenu.setMnemonic('F');
-		menuBar.add(mnNewMenu);
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\u5F00\u59CB\u8BA1\u7B97");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		JMenu menu_File = new JMenu("\u6587\u4EF6(F)");
+		menu_File.setMnemonic('F');
+		menuBar.add(menu_File);
+		JMenuItem menubutton_start = new JMenuItem("\u5F00\u59CB\u8BA1\u7B97");
+		menubutton_start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				start();
 			}
 		});
-		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_MASK));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		menubutton_start.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_MASK));
+		menu_File.add(menubutton_start);
 		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("\u68C0\u67E5\u66F4\u65B0");
-		mntmNewMenuItem_12.setEnabled(false);
-		mnNewMenu.add(mntmNewMenuItem_12);
+		JMenuItem menubutton_check = new JMenuItem("\u68C0\u67E5\u66F4\u65B0");
+		menubutton_check.setEnabled(false);
+		menu_File.add(menubutton_check);
 		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("\u9000\u51FA\u7A0B\u5E8F");
-		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+		JMenuItem menubutton_quit = new JMenuItem("\u9000\u51FA\u7A0B\u5E8F");
+		menubutton_quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exit();
 			}
 		});
-		mntmNewMenuItem_6.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK));
-		mnNewMenu.add(mntmNewMenuItem_6);
+		menubutton_quit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK));
+		menu_File.add(menubutton_quit);
 		
-		JMenu mnNewMenu_1 = new JMenu("\u5173\u4E8E(A)");
-		mnNewMenu_1.setMnemonic('A');
-		menuBar.add(mnNewMenu_1);
+		JMenu menu_About = new JMenu("\u5173\u4E8E(A)");
+		menu_About.setMnemonic('A');
+		menuBar.add(menu_About);
 		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("\u5173\u4E8E\u7A0B\u5E8F");
-		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+		JMenuItem menubutton_about = new JMenuItem("\u5173\u4E8E\u7A0B\u5E8F");
+		menubutton_about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				About frame = new About();
 				frame.setVisible(true);
 			}
 		});
-		mntmNewMenuItem_8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0));
-		mnNewMenu_1.add(mntmNewMenuItem_8);
+		menubutton_about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0));
+		menu_About.add(menubutton_about);
 		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("\u5173\u4E8E\u4F5C\u8005");
-		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+		JMenuItem menubutton_author = new JMenuItem("\u5173\u4E8E\u4F5C\u8005");
+		menubutton_author.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				About_Author frame = new About_Author();
 				frame.setVisible(true);
 			}
 		});
-		mntmNewMenuItem_7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
-		mnNewMenu_1.add(mntmNewMenuItem_7);
+		menubutton_author.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
+		menu_About.add(menubutton_author);
 		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("\u6350\u8D60");
-		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+		JMenuItem menubutton_money = new JMenuItem("\u6350\u8D60");
+		menubutton_money.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Income();
 			}
 		});
-		mnNewMenu_1.add(mntmNewMenuItem_9);
+		menu_About.add(menubutton_money);
 		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("\u66F4\u65B0\u65E5\u5FD7");
-		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+		JMenuItem menubutton_log = new JMenuItem("\u66F4\u65B0\u65E5\u5FD7");
+		menubutton_log.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Whatsnew frame = new Whatsnew();
 				frame.setVisible(true);
 			}
 		});
-		mnNewMenu_1.add(mntmNewMenuItem_10);
+		menu_About.add(menubutton_log);
 		
-		JMenu mnNewMenu_2 = new JMenu("\u5E2E\u52A9(H)");
-		mnNewMenu_2.setMnemonic('H');
-		menuBar.add(mnNewMenu_2);
+		JMenuItem menubutton_thanks = new JMenuItem("\u9E23\u8C22");
+		menubutton_thanks.setEnabled(false);
+		menubutton_thanks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				thanks();
+			}
+		});
+		menu_About.add(menubutton_thanks);
 		
-		JMenuItem mntmNewMenuItem_11 = new JMenuItem("\u4F7F\u7528\u8BF4\u660E");
-		mntmNewMenuItem_11.addActionListener(new ActionListener() {
+		JMenu menu_Help = new JMenu("\u5E2E\u52A9(H)");
+		menu_Help.setMnemonic('H');
+		menuBar.add(menu_Help);
+		
+		JMenuItem menubutton_tips = new JMenuItem("\u4F7F\u7528\u8BF4\u660E");
+		menubutton_tips.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tips();
 			}
 		});
-		mntmNewMenuItem_11.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
-		mnNewMenu_2.add(mntmNewMenuItem_11);
+		menubutton_tips.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
+		menu_Help.add(menubutton_tips);
 		
-		JMenu mnNewMenu_4 = new JMenu("\u8BBE\u7F6E(S)");
-		mnNewMenu_4.setMnemonic('S');
-		menuBar.add(mnNewMenu_4);
+		JMenu menu_Setting = new JMenu("\u8BBE\u7F6E(S)");
+		menu_Setting.setMnemonic('S');
+		menuBar.add(menu_Setting);
 		
-		JMenu mnNewMenu_3_1 = new JMenu("Buff\u6E05\u7A7A");
-		mnNewMenu_4.add(mnNewMenu_3_1);
+		JMenu menu_clearbuff = new JMenu("Buff\u6E05\u7A7A");
+		menu_Setting.add(menu_clearbuff);
 		
 		JMenuItem mntmNewMenuItem_14 = new JMenuItem("\u589E\u4F24\u533A");
 		mntmNewMenuItem_14.addActionListener(new ActionListener() {
@@ -166,7 +179,7 @@ public class Main extends JFrame {
 				resetbuff(1);
 			} 
 		});
-		mnNewMenu_3_1.add(mntmNewMenuItem_14);
+		menu_clearbuff.add(mntmNewMenuItem_14);
 		
 		JMenuItem mntmNewMenuItem_2_1 = new JMenuItem("\u8106\u5F31\u533A");
 		mntmNewMenuItem_2_1.addActionListener(new ActionListener() {
@@ -174,7 +187,7 @@ public class Main extends JFrame {
 				resetbuff(2);
 			}
 		});
-		mnNewMenu_3_1.add(mntmNewMenuItem_2_1);
+		menu_clearbuff.add(mntmNewMenuItem_2_1);
 		
 		JMenuItem mntmNewMenuItem_3_1 = new JMenuItem("\u51CF\u9632\u533A");
 		mntmNewMenuItem_3_1.addActionListener(new ActionListener() {
@@ -182,7 +195,7 @@ public class Main extends JFrame {
 				resetbuff(3);
 			}
 		});
-		mnNewMenu_3_1.add(mntmNewMenuItem_3_1);
+		menu_clearbuff.add(mntmNewMenuItem_3_1);
 		
 		JMenuItem mntmNewMenuItem_4_1 = new JMenuItem("\u52A0\u653B\u533A");
 		mntmNewMenuItem_4_1.addActionListener(new ActionListener() {
@@ -190,7 +203,7 @@ public class Main extends JFrame {
 				resetbuff(4);
 			}
 		});
-		mnNewMenu_3_1.add(mntmNewMenuItem_4_1);
+		menu_clearbuff.add(mntmNewMenuItem_4_1);
 		
 		JMenuItem mntmNewMenuItem_5_1 = new JMenuItem("\u5168\u90E8\u6E05\u96F6");
 		mntmNewMenuItem_5_1.addActionListener(new ActionListener() {
@@ -198,17 +211,17 @@ public class Main extends JFrame {
 				resetbuff(0);
 			}
 		});
-		mnNewMenu_3_1.add(mntmNewMenuItem_5_1);
+		menu_clearbuff.add(mntmNewMenuItem_5_1);
 		
-		JMenu mnNewMenu_3 = new JMenu("\u6A21\u5F0F\u5207\u6362");
-		mnNewMenu_4.add(mnNewMenu_3);
+		JMenu menu_switchmode = new JMenu("\u6A21\u5F0F\u5207\u6362");
+		menu_Setting.add(menu_switchmode);
 		
 		normal_mode = new JRadioButtonMenuItem("\u5E38\u89C4\u6A21\u5F0F");
 		normal_mode.setSelected(true);
-		mnNewMenu_3.add(normal_mode);
+		menu_switchmode.add(normal_mode);
 		
 		minus_mode = new JRadioButtonMenuItem("\u8D1F\u6570\u517C\u5BB9\u6A21\u5F0F");
-		mnNewMenu_3.add(minus_mode);
+		menu_switchmode.add(minus_mode);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -803,6 +816,18 @@ public class Main extends JFrame {
 	}
 	public static void throwerror(Exception e) {
 		ErrorSender dialog = new ErrorSender(e);
+		dialog.setVisible(true);
+	}
+	private  void setIcon() {
+		try {
+			Image icon = ImageIO.read(new File(Head.main_icon));
+			this.setIconImage(icon);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private void thanks() {
+		Thanks dialog = new Thanks();
 		dialog.setVisible(true);
 	}
 }

@@ -16,7 +16,7 @@ public class About extends JDialog {
 	private static final long serialVersionUID = 8021233550284228130L;
 	private JPanel contentPane;
 	private JScrollPane jsp;
-	private static final String version_info = "V"+Head.version+"°æ";
+	private static final String version_info = "V"+Head.version;
 	public About() {
 		setModal(true);
 		setResizable(false);
