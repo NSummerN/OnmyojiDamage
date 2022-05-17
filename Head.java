@@ -22,7 +22,7 @@ public class Head {
 	public static double Player_Baoji;
 	public static double Player_Baoshang;
 	public static double Target_Defense;
-	public static final String version="1.5.0pre1";
+	public static final String version="1.5.0";
 	public static final String text_about = "本程序由WeedyEver开发\n"
 			+ "基于Java8编写\n"
 			+ "部分图标归原作者Foggycloud07所有\n"
@@ -99,7 +99,11 @@ public class Head {
 			+ "加入了鸣谢菜单\n"
 			+ "加入了应用程序的图标\n"
 			+ "一些细节地方的优化\n"
-			+ "此版本为测试版"
+			+ "此版本为测试版\n"
+			+ "\n"
+			+ "\n"
+			+ "V1.5.0版本更新日志\n"
+			+ "鸣谢菜单的实装"
 			;
 	public static final String url = "https://afdian.net/@weedy";
 	public static final String errortips = "程序运行时发生错误!\n"
@@ -112,4 +116,6 @@ public class Head {
 			+ "感谢您的配合,所有反馈的bug都会在日后更新中修复!\n"
 			+ "为了保证您的使用体验,建议关闭程序";
 	public static final String sponsors_list = "";
+	public static final String null_list = "啊哦,好像暂时没有人赞助过作者呢\n"
+			+ "这是个悲伤的故事\n";
 }

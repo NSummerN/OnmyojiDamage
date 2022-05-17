@@ -145,7 +145,6 @@ public class Main extends JFrame {
 		menu_About.add(menubutton_log);
 		
 		JMenuItem menubutton_thanks = new JMenuItem("\u9E23\u8C22");
-		menubutton_thanks.setEnabled(false);
 		menubutton_thanks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thanks();

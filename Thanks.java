@@ -21,6 +21,7 @@ public class Thanks extends JDialog {
 	private JScrollPane jsp;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_1;
+	private JTextArea textArea;
 	public Thanks() {
 		setModal(true);
 		setResizable(false);
@@ -37,7 +38,7 @@ public class Thanks extends JDialog {
 		lblNewLabel.setFont(new Font("黑体", Font.PLAIN, 16));
 		contentPane.add(lblNewLabel);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("等线", Font.PLAIN, 16));
 		textArea.setEditable(false);
@@ -45,7 +46,6 @@ public class Thanks extends JDialog {
 		
 		jsp = new JScrollPane(textArea);
 		jsp.setBounds(13, 29, 411, 192);
-		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(jsp);
 		
 		textArea.setText(Head.sponsors_list);
@@ -72,6 +72,7 @@ public class Thanks extends JDialog {
 		lblNewLabel_1.setFont(new Font("黑体", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(13, 231, 61, 20);
 		contentPane.add(lblNewLabel_1);
+		change_text();
 		
 	}
 	private void openurl() {
@@ -81,5 +82,10 @@ public class Thanks extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
+	private void change_text() {
+		String str = textArea.getText();
+		if(Funcs.is_str_empty(str)) {
+			textArea.setText(Head.null_list);
+		}
+	}
 }
